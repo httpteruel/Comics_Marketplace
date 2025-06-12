@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quadrinhos - Loja de Quadrinhos</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header class="sticky-top">
+        <div class="container flex items-center justify-between" role="banner">
+            <a href="index.html" class="logo" aria-label="Quadrinhos logo">Quadrinhos</a>
+            <nav aria-label="Main navigation" class="flex items-center gap-4">
+                <a href="#home" tabindex="0">Home</a>
+                <a href="#comics" tabindex="0">Quadrinhos</a>
+                <a href="#about" tabindex="0">Sobre</a>
+                <button id="cartBtn" class="button" aria-label="Ver carrinho de compras" title="Carrinho de compras">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="cart-icon"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zm0 2h12l1 2H5l1-2zm13 16H5V8h14v12zM9 10a1 1 0 0 1-1 1H7a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm4 0a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm4 0a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1z"/></svg>
+                    <span id="cartItemCount">0</span>
+                </button>
+                <a href="login.html" id="loginBtn" class="button button-secondary" aria-label="Acessar página de login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container" id="home" tabindex="-1">
+            <h1>Encontre seus quadrinhos favoritos</h1>
+            <p>Explore nossa coleção exclusiva de quadrinhos clássicos e modernos. Compre suas edições favoritas com garantida qualidade e entrega rápida.</p>
+            <button class="button button-primary" onclick="scrollToComics()">Compre Agora</button>
+        </section>
+
+        <section class="container" id="comics" aria-labelledby="comics-title" tabindex="-1">
+            <h2 id="comics-title" class="text-center" style="font-weight:700; font-size:2rem; color: var(--color-primary);">Quadrinhos em Destaque</h2>
+            <div class="comics-grid" role="list">
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Batman - O Cavaleiro das Trevas, por Frank Miller. Preço R$49,90" data-key="batman">
+                    <div class="comic-image-container">
+                        <img src="images/batman.jpg" alt="Capa do quadrinho Batman - O Cavaleiro das Trevas" />
+                    </div>
+                    <div class="comic-info">
+                        <h3 class="comic-title">Batman - O Cavaleiro das Trevas</h3>
+                        <p class="comic-author">Frank Miller</p>
+                        <div class="comic-price">R$ 49,90</div>
+                        <button class="button button-primary buy-button" aria-label="Comprar Batman">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Mulher-Maravilha - Deusa da Guerra, por Brian Azzarello. Preço R$54,90" data-key="wonderwoman">
+                    <div class="comic-image-container">
+                    <img src="images/mulher_maravilha.webp" alt="Capa do quadrinho Mulher-Maravilha - Deusa da Guerra" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Mulher-Maravilha - Deusa da Guerra</h3>
+                    <p class="comic-author">Brian Azzarello</p>
+                    <div class="comic-price">R$ 54,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Mulher-Maravilha">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Homem-Aranha - A Saga da Ilha, por Dan Slott. Preço R$42,90" data-key="spiderman">
+                    <div class="comic-image-container">
+                    <img src="images/spider_man.webp" alt="Capa do quadrinho Homem-Aranha - A Saga da Ilha" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Homem-Aranha - A Saga da Ilha</h3>
+                    <p class="comic-author">Dan Slott</p>
+                    <div class="comic-price">R$ 42,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Homem-Aranha">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: X-Men - Dias de um Futuro Esquecido, por Chris Claremont. Preço R$59,90" data-key="xmen">
+                    <div class="comic-image-container">
+                    <img src="images/xman.jpg" alt="Capa do quadrinho X-Men - Dias de um Futuro Esquecido" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">X-Men - Dias de um Futuro Esquecido</h3>
+                    <p class="comic-author">Chris Claremont</p>
+                    <div class="comic-price">R$ 59,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar X-Men">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Sandman - Prelúdios e Noturnos, por Neil Gaiman. Preço R$62,00" data-key="sandman">
+                    <div class="comic-image-container">
+                    <img src="images/sandman.webp" alt="Capa do quadrinho Sandman - Prelúdios e Noturnos" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Sandman - Prelúdios e Noturnos</h3>
+                    <p class="comic-author">Neil Gaiman</p>
+                    <div class="comic-price">R$ 62,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Sandman">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Flash - Renascimento, por Geoff Johns. Preço R$47,90" data-key="flash">
+                    <div class="comic-image-container">
+                    <img src="images/flash.jpg" alt="Capa do quadrinho Flash - Renascimento" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Flash - Renascimento</h3>
+                    <p class="comic-author">Geoff Johns</p>
+                    <div class="comic-price">R$ 47,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Flash">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Capitão América - O Soldado Invernal, por Ed Brubaker. Preço R$51,50" data-key="captainamerica">
+                    <div class="comic-image-container">
+                    <img src="images/capitao_america.jpg" alt="Capa do quadrinho Capitão América - O Soldado Invernal" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Capitão América - O Soldado Invernal</h3>
+                    <p class="comic-author">Ed Brubaker</p>
+                    <div class="comic-price">R$ 51,50</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Capitão América">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Wolverine - Origem, por Paul Jenkins. Preço R$55,00" data-key="wolverine">
+                    <div class="comic-image-container">
+                    <img src="images/wolverine.jpg" alt="Capa do quadrinho Wolverine - Origem" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Wolverine - Origem</h3>
+                    <p class="comic-author">Paul Jenkins</p>
+                    <div class="comic-price">R$ 55,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Wolverine">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Lanterna Verde - Renascimento, por Geoff Johns. Preço R$52,50" data-key="greenlantern">
+                    <div class="comic-image-container">
+                    <img src="images/lanterna.jpg" alt="Capa do quadrinho Lanterna Verde - Renascimento" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Lanterna Verde - Renascimento</h3>
+                    <p class="comic-author">Geoff Johns</p>
+                    <div class="comic-price">R$ 52,50</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Lanterna Verde">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Watchmen, por Alan Moore. Preço R$67,90" data-key="watchmen">
+                    <div class="comic-image-container">
+                    <img src="images/watchmen.jpg" alt="Capa do quadrinho Watchmen" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Watchmen - Edição Definitiva</h3>
+                    <p class="comic-author">Alan Moore</p>
+                    <div class="comic-price">R$ 67,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Watchmen">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Deadpool - Mercenário Tagarela, por Joe Kelly. Preço R$49,00" data-key="deadpool">
+                    <div class="comic-image-container">
+                    <img src="images/deadpool.jpg" alt="Capa do quadrinho Deadpool - Mercenário Tagarela" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Deadpool - Mercenário Tagarela</h3>
+                    <p class="comic-author">Joe Kelly</p>
+                    <div class="comic-price">R$ 49,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Deadpool">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Homem de Ferro - Extremis, por Warren Ellis. Preço R$57,00" data-key="ironman">
+                    <div class="comic-image-container">
+                    <img src="images/ironman.jpg" alt="Capa do quadrinho Homem de Ferro - Extremis" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Homem de Ferro - Extremis</h3>
+                    <p class="comic-author">Warren Ellis</p>
+                    <div class="comic-price">R$ 57,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Homem de Ferro">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Thor - Deus do Trovão, por Jason Aaron. Preço R$50,00" data-key="thor">
+                    <div class="comic-image-container">
+                    <img src="images/thor.webp" alt="Capa do quadrinho Thor - Deus do Trovão" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Thor - Deus do Trovão</h3>
+                    <p class="comic-author">Jason Aaron</p>
+                    <div class="comic-price">R$ 50,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Thor">Comprar</button>
+                    </div>
+                </article>
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Justiceiro - Zona de Guerra, por Garth Ennis. Preço R$46,00" data-key="punisher">
+                    <div class="comic-image-container">
+                    <img src="images/justiceiro.webp" alt="Capa do quadrinho Justiceiro - Zona de Guerra" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Justiceiro - Zona de Guerra</h3>
+                    <p class="comic-author">Garth Ennis</p>
+                    <div class="comic-price">R$ 46,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Justiceiro">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Poison Ivy - Jardim Mortal, por Amy Chu. Preço R$38,90" data-key="poisonivy1">
+                    <div class="comic-image-container">
+                    <img src="images/hera.webp" alt="Capa do quadrinho Poison Ivy - Jardim Mortal" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Poison Ivy - Jardim Mortal</h3>
+                    <p class="comic-author">Amy Chu</p>
+                    <div class="comic-price">R$ 38,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Poison Ivy Jardim Mortal">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Poison Ivy - Raízes de Vingança, por Kate Leth. Preço R$42,00" data-key="poisonivy2">
+                    <div class="comic-image-container">
+                    <img src="images/hera2.webp" alt="Capa do quadrinho Poison Ivy - Raízes de Vingança" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Poison Ivy - Raízes de Vingança</h3>
+                    <p class="comic-author">Kate Leth</p>
+                    <div class="comic-price">R$ 42,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Poison Ivy Raízes de Vingança">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Harley Quinn - Loucura e Sedução, por Amanda Conner. Preço R$45,50" data-key="harleyquinn1">
+                    <div class="comic-image-container">
+                    <img src="images/arlequina1.jpg" alt="Capa do quadrinho Harley Quinn - Loucura e Sedução" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Harley Quinn - Loucura e Sedução</h3>
+                    <p class="comic-author">Amanda Conner</p>
+                    <div class="comic-price">R$ 45,50</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Harley Quinn Loucura e Sedução">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Harley Quinn - Amores Perigosos, por Jimmy Palmiotti. Preço R$47,00" data-key="harleyquinn2">
+                    <div class="comic-image-container">
+                    <img src="images/arlequina2.jpg" alt="Capa do quadrinho Harley Quinn - Amores Perigosos" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Harley Quinn - Amores Perigosos</h3>
+                    <p class="comic-author">Jimmy Palmiotti</p>
+                    <div class="comic-price">R$ 47,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Harley Quinn Amores Perigosos">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Harley Quinn - Caos e Diversão, por Chad Hardin. Preço R$44,00" data-key="harleyquinn3">
+                    <div class="comic-image-container">
+                    <img src="images/arlequina3.jpg" alt="Capa do quadrinho Harley Quinn - Caos e Diversão" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Harley Quinn - Caos e Diversão</h3>
+                    <p class="comic-author">Chad Hardin</p>
+                    <div class="comic-price">R$ 44,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Harley Quinn Caos e Diversão">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: June Moone - Encantamentos, por Lilah Sturges. Preço R$39,50" data-key="junemoone">
+                    <div class="comic-image-container">
+                    <img src="images/magia.jpg" alt="Capa do quadrinho June Moone - Encantamentos" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">June Moone - Encantamentos</h3>
+                    <p class="comic-author">Lilah Sturges</p>
+                    <div class="comic-price">R$ 39,50</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar June Moone Encantamentos">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Teen Titans - Heróis Adolescente, por Geoff Johns. Preço R$46,90" data-key="teentitans1">
+                    <div class="comic-image-container">
+                    <img src="images/teen1.jpg" alt="Capa do quadrinho Teen Titans - Heróis Adolescente" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Teen Titans - Heróis Adolescente</h3>
+                    <p class="comic-author">Geoff Johns</p>
+                    <div class="comic-price">R$ 46,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Teen Titans Heróis Adolescente">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Teen Titans - Tempestade Selvagem, por Marv Wolfman. Preço R$48,00" data-key="teentitans2">
+                    <div class="comic-image-container">
+                    <img src="images/teen2.jpg" alt="Capa do quadrinho Teen Titans - Tempestade Selvagem" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Teen Titans - Tempestade Selvagem</h3>
+                    <p class="comic-author">Marv Wolfman</p>
+                    <div class="comic-price">R$ 48,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Teen Titans Tempestade Selvagem">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Lanterna Verde - Coração Vermelho, por Geoff Johns. Preço R$53,90" data-key="greenlantern2">
+                    <div class="comic-image-container">
+                    <img src="images/lanterna2.webp" alt="Capa do quadrinho Lanterna Verde - Coração Vermelho" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Lanterna Verde - Coração Vermelho</h3>
+                    <p class="comic-author">Geoff Johns</p>
+                    <div class="comic-price">R$ 53,90</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Lanterna Verde Coração Vermelho">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Guardiões da Galáxia - Jornada Estelar, por Dan Abnett. Preço R$55,00" data-key="gotg1">
+                    <div class="comic-image-container">
+                    <img src="images/gg1.jpg" alt="Capa do quadrinho Guardiões da Galáxia - Jornada Estelar" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Guardiões da Galáxia - Jornada Estelar</h3>
+                    <p class="comic-author">Dan Abnett</p>
+                    <div class="comic-price">R$ 55,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Guardiões da Galáxia Jornada Estelar">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Guardiões da Galáxia - Invasão Cósmica, por Brian Michael Bendis. Preço R$58,50" data-key="gotg2">
+                    <div class="comic-image-container">
+                    <img src="images/g2.jpg" alt="Capa do quadrinho Guardiões da Galáxia - Invasão Cósmica" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Guardiões da Galáxia - Invasão Cósmica</h3>
+                    <p class="comic-author">Brian Michael Bendis</p>
+                    <div class="comic-price">R$ 58,50</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Guardiões da Galáxia Invasão Cósmica">Comprar</button>
+                    </div>
+                </article>
+
+                <article class="comic-card" role="listitem" tabindex="0" aria-label="Comic: Guardiões da Galáxia - Batalha Final, por Steve McNiven. Preço R$60,00" data-key="gotg3">
+                    <div class="comic-image-container">
+                    <img src="images/gg5.jpg" alt="Capa do quadrinho Guardiões da Galáxia - Batalha Final" />
+                    </div>
+                    <div class="comic-info">
+                    <h3 class="comic-title">Guardiões da Galáxia - Batalha Final</h3>
+                    <p class="comic-author">Steve McNiven</p>
+                    <div class="comic-price">R$ 60,00</div>
+                    <button class="button button-primary buy-button" aria-label="Comprar Guardiões da Galáxia Batalha Final">Comprar</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="container text-center pb-20" tabindex="-1">
+            <h2 style="font-weight:700; font-size:2rem; color: var(--color-primary); margin-bottom: 1rem;">Sobre a Quadrinhos</h2>
+            <p style="max-width: 600px; margin-left:auto; margin-right:auto; color: var(--color-text); font-size: 1.125rem;">
+                Na Quadrinhos, nosso amor pela nona arte nos guia para trazer os melhores títulos para os fãs de quadrinhos de todos os estilos.
+                Com uma curadoria dedicada e entrega rápida, garantimos uma experiência de compra segura e satisfatória.
+            </p>
+        </section>
+    </main>
+
+    <div id="comicModalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+        <div id="modal">
+            <button id="modalCloseBtn" aria-label="Fechar modal" title="Fechar modal">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalSynopsis"></p>
+            <div id="modalPrice"></div>
+            <button id="addToCartBtn" aria-label="Adicionar ao carrinho" title="Adicionar ao carrinho">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="9" cy="21" r="1.5"/><circle cx="17" cy="21" r="1.5"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                Adicionar ao carrinho
+            </button>
+        </div>
+    </div>
+
+    <div id="shoppingCartModalOverlay" role="dialog" aria-modal="true" aria-labelledby="shoppingCartModalTitle" tabindex="-1">
+        <div id="shoppingCartModal">
+            <button id="shoppingCartModalCloseBtn" aria-label="Fechar carrinho" title="Fechar carrinho">&times;</button>
+            <h3 id="shoppingCartModalTitle">Seu Carrinho</h3>
+            <div id="cartItemsContainer" class="cart-items-container">
+                <p class="empty-cart-message">Seu carrinho está vazio.</p>
+            </div>
+            <div id="cartSummary">
+                <div class="cart-total">Total: <span id="cartTotal">R$ 0,00</span></div>
+                <button id="checkoutBtn" class="button button-primary">Finalizar Compra</button>
+                <button id="clearCartBtn" class="button button-secondary">Limpar Carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Quadrinhos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

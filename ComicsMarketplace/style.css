@@ -1,0 +1,943 @@
+/* style.css */
+
+/* --- Variáveis CSS --- */
+:root {
+    --color-primary: #111111; /* Preto para cabeçalhos e elementos principais */
+    --color-primary-hover: #333333; /* Cinza escuro para hover */
+    --color-accent: #ff4500; /* Laranja para destaques e botões */
+    --color-accent-hover: #cc3700; /* Laranja mais escuro para hover */
+    --color-text: #333333; /* Texto principal cinza escuro */
+    --color-text-light: #f3f4f6; /* Texto claro para fundos escuros */
+    --color-bg: #f3f4f6; /* Fundo cinza claro */
+    --color-bg-dark: #ffffff; /* Fundo escuro para seções */
+    --color-border: #d1d5db; /* Cor da borda */
+    --color-success: #22c55e; /* Verde para sucesso */
+    --color-error: #ef4444; /* Vermelho para erro */
+
+    --font-family-sans: 'Arial', sans-serif;
+    --font-family-serif: 'Georgia', serif;
+
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    --spacing-3xl: 4rem;
+
+    --radius: 0.5rem; /* Raio de borda padrão */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra padrão */
+    --transition: all 0.3s ease; /* Transição padrão */
+}
+
+/* --- Reset Básico e Estilos Globais --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base font size */
+}
+
+body {
+    font-family: var(--font-family-sans);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
+    transition: var(--transition);
+}
+
+/* --- Utilitários / Layout Comum --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl); /* Mais padding para espaçamento */
+}
+
+.flex {
+    display: flex;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.gap-4 {
+    gap: var(--spacing-md);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.pb-20 {
+    padding-bottom: 5rem; /* Um pouco mais de padding no final */
+}
+
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Garante que o header fique acima de outros elementos */
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Tipografia --- */
+h1, h2, h3, h4 {
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* --- Botões --- */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: var(--transition);
+    border: 1px solid transparent; /* Para evitar mudança de layout no hover */
+}
+
+.button-primary {
+    background-color: var(--color-accent);
+    color: var(--color-text-light);
+}
+
+.button-primary:hover {
+    background-color: var(--color-accent-hover);
+    color: var(--color-text-light);
+    transform: translateY(-2px); /* Pequeno efeito de elevação */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.button-secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+}
+
+.button-secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(100%);
+}
+
+/* --- Header --- */
+header {
+    background-color: #fff;
+    padding: var(--spacing-md) 0;
+    box-shadow: var(--shadow);
+}
+
+header .logo {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-right: var(--spacing-xl);
+    text-decoration: none; /* Remove underline by default */
+}
+
+header nav a {
+    color: var(--color-primary);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+header nav a:hover {
+    background-color: var(--color-bg);
+    color: var(--color-accent);
+    text-decoration: none;
+}
+
+.cart-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor; /* Usa a cor do texto do botão */
+    margin-right: var(--spacing-xs);
+}
+
+#cartBtn {
+    position: relative;
+    padding-right: var(--spacing-md); /* Espaço extra para o contador */
+    color: var(--color-primary);
+}
+
+#cartBtn:hover {
+    color: var(--color-accent);
+}
+
+#cartItemCount {
+    position: absolute;
+    top: -5px;
+    right: 0px;
+    background-color: var(--color-accent);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 0.1em 0.5em;
+    min-width: 1.5em; /* Garante que seja um círculo/oval */
+    text-align: center;
+    line-height: 1.5em; /* Centraliza o texto verticalmente */
+}
+
+/* --- Hero Section --- */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url('https://cdn.pixabay.com/photo/2016/09/08/23/18/comic-1655767_1280.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 8rem var(--spacing-xl);
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Garante que o gradiente não vaze */
+    border-radius: var(--radius);
+    margin-top: var(--spacing-xl);
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
+    color: var(--color-text-light);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Comics Grid --- */
+#comics {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xxl);
+}
+
+.comics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsivo */
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xxl);
+    justify-items: center;
+}
+
+.comic-card {
+    background-color: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    max-width: 300px; /* Limita a largura dos cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo dentro do card */
+    padding-bottom: var(--spacing-md); /* Espaçamento inferior dentro do card */
+}
+
+.comic-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.comic-image-container {
+    width: 100%;
+    height: 300px; /* Altura fixa para as imagens */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-md);
+}
+
+.comic-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha o container */
+    transition: transform 0.3s ease;
+}
+
+.comic-card:hover .comic-image-container img {
+    transform: scale(1.05);
+}
+
+.comic-info {
+    padding: 0 var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    text-align: center; /* Centraliza o texto da info */
+    flex-grow: 1; /* Permite que o info ocupe o espaço restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.comic-title {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-primary);
+    line-height: 1.3;
+}
+
+.comic-author {
+    font-size: 0.95rem;
+    color: #6b7280;
+    margin-bottom: var(--spacing-sm);
+}
+
+.comic-price {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    margin-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md); /* Espaçamento antes do botão */
+}
+
+.comic-card .buy-button {
+    width: 80%; /* Botão com largura menor dentro do card */
+    margin: 0 auto; /* Centraliza o botão */
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+}
+
+
+/* --- About Section --- */
+#about {
+    background-color: var(--color-bg-dark);
+    color: white;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    border-radius: var(--radius);
+}
+
+#about h2 {
+    color: white;
+}
+
+#about p {
+    color: white;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: var(--spacing-md) 0;
+    margin-top: var(--spacing-xxl);
+    font-size: 0.9rem;
+}
+
+/* --- Modal Base --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    background-color: #fff;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: var(--shadow);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+    transform: translateY(0);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    color: var(--color-primary);
+}
+
+/* --- Modal de Detalhes do Quadrinho --- */
+#modal { /* O id original era apenas 'modal' */
+    background-color: #fff;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: var(--shadow);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+#comicModalOverlay { /* ID específico para o overlay */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#comicModalOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#comicModalOverlay.active #modal {
+    transform: translateY(0);
+}
+
+#modalCloseBtn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+#modalCloseBtn:hover {
+    color: var(--color-primary);
+}
+
+
+#modalTitle {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-md);
+    text-align: center;
+}
+
+#modalSynopsis {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    color: #555;
+    text-align: justify;
+}
+
+#modalPrice {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+#addToCartBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--color-accent);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+#addToCartBtn:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#addToCartBtn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    margin-right: var(--spacing-sm);
+}
+
+/* --- Modal do Carrinho de Compras --- */
+#shoppingCartModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#shoppingCartModalOverlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+#shoppingCartModal {
+    background-color: #fff;
+    padding: var(--spacing-xl);
+    border-radius: var(--radius);
+    width: 90%;
+    max-width: 700px; /* Maior para o carrinho */
+    height: 80%; /* Para scroll interno */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+#shoppingCartModalOverlay.active #shoppingCartModal {
+    transform: translateY(0);
+}
+
+
+#shoppingCartModalCloseBtn {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #6b7280;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+#shoppingCartModalCloseBtn:hover {
+    color: var(--color-primary);
+}
+
+#shoppingCartModalTitle {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
+.cart-items-container {
+    flex-grow: 1; /* Permite que a lista de itens ocupe o espaço */
+    overflow-y: auto; /* Adiciona scroll se os itens excederem a altura */
+    margin-bottom: var(--spacing-xl);
+    padding-right: var(--spacing-sm); /* Espaço para a barra de scroll */
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    margin-right: var(--spacing-md);
+    flex-shrink: 0; /* Não encolhe a imagem */
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.cart-item-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.cart-item-details p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: var(--spacing-xs);
+}
+
+.cart-item-price {
+    font-weight: 600;
+    color: var(--color-accent);
+    margin-left: var(--spacing-md);
+    flex-shrink: 0;
+}
+
+.remove-item-btn {
+    background-color: var(--color-error);
+    color: white;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-left: var(--spacing-md);
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+}
+
+.remove-item-btn:hover {
+    background-color: #dc2626;
+}
+
+.empty-cart-message {
+    text-align: center;
+    color: #6b7280;
+    font-size: 1.1rem;
+    margin-top: var(--spacing-xl);
+}
+
+#cartSummary {
+    margin-top: var(--spacing-xl);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--color-border);
+    text-align: right;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+#checkoutBtn, #clearCartBtn {
+    margin-left: var(--spacing-sm);
+    width: auto;
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+/* --- Estilos para as páginas de formulário (login, cadastro) --- */
+.form-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    padding: var(--spacing-xl);
+}
+
+.form-container {
+    background-color: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: var(--spacing-xxl) var(--spacing-xl);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 2rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-md);
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    color: var(--color-text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus,
+.form-group input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2); /* Sombra mais visível no foco */
+}
+
+.form-container h3 {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-primary);
+    text-align: left;
+}
+
+.form-actions {
+    margin-top: var(--spacing-xl);
+}
+
+.form-actions .button {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1.1rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.form-link {
+    display: block;
+    margin-top: var(--spacing-sm);
+    color: var(--color-accent);
+    font-size: 0.95rem;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.form-link:hover {
+    color: var(--color-accent-hover);
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+    text-align: left;
+    display: block;
+    min-height: 1.25rem; /* Garante que o layout não salte ao aparecer/desaparecer */
+}
+
+.success-message {
+    color: var(--color-success);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+    text-align: left;
+    display: block;
+    min-height: 1.25rem; /* Garante que o layout não salte ao aparecer/desaparecer */
+}
+
+/* Estilo para campos inválidos */
+input.invalid {
+    border-color: var(--color-error) !important;
+}
+
+/* Estilo para campos válidos */
+input.valid {
+    border-color: var(--color-success) !important;
+}
+
+/* --- Responsividade Básica --- */
+@media (max-width: 768px) {
+    .container {
+        padding: var(--spacing-lg);
+    }
+
+    .flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav {
+        margin-top: var(--spacing-md);
+    }
+
+    header nav a, #cartBtn {
+        padding: var(--spacing-sm);
+    }
+
+    .hero {
+        padding: 4rem var(--spacing-md);
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .comics-grid {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores */
+    }
+
+    .comic-card {
+        max-width: 350px; /* Um pouco mais de largura para single column */
+    }
+
+    .modal, #modal, #shoppingCartModal {
+        padding: var(--spacing-lg);
+    }
+
+    .form-container {
+        padding: var(--spacing-xl);
+    }
+
+    .form-container h2 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 1.5rem;
+        margin-right: 0;
+    }
+
+    header nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+
+    #cartBtn {
+        margin-left: 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .form-container {
+        padding: var(--spacing-lg);
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-actions .button {
+        font-size: 1rem;
+        padding: var(--spacing-sm);
+    }
+}

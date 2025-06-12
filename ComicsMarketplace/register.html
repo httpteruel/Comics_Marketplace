@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Quadrinhos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-page-container">
+        <div class="form-container">
+            <h2>Criar Sua Conta</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regFirstName">Nome</label>
+                    <input type="text" id="regFirstName" placeholder="Seu nome" required>
+                    <span class="error-message" id="regFirstNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regLastName">Sobrenome</label>
+                    <input type="text" id="regLastName" placeholder="Seu sobrenome" required>
+                    <span class="error-message" id="regLastNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-mail</label>
+                    <input type="email" id="regEmail" placeholder="seuemail@exemplo.com" required>
+                    <span class="error-message" id="regEmailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Senha</label>
+                    <input type="password" id="regPassword" placeholder="Mínimo 8 dígitos, 1 número, 1 maiúscula" required>
+                    <span class="error-message" id="regPasswordError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Telefone Celular (DDD + Número)</label>
+                    <input type="tel" id="regPhone" placeholder="(XX) XXXXX-XXXX" required pattern="\(\d{2}\) \d{5}-\d{4}">
+                    <span class="error-message" id="regPhoneError"></span>
+                </div>
+                <h3>Endereço Principal</h3>
+                <div class="form-group">
+                    <label for="regCEP">CEP</label>
+                    <input type="text" id="regCEP" placeholder="Ex: 00000-000" maxlength="9" required>
+                    <span class="error-message" id="regCEPError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regAddressStreet">Rua</label>
+                    <input type="text" id="regAddressStreet" placeholder="Aguardando CEP..." readonly>
+                </div>
+                <div class="form-group">
+                    <label for="regAddressNumber">Número</label>
+                    <input type="text" id="regAddressNumber" placeholder="Número da residência" required>
+                    <span class="error-message" id="regAddressNumberError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="regAddressDistrict">Bairro</label>
+                    <input type="text" id="regAddressDistrict" placeholder="Aguardando CEP..." readonly>
+                </div>
+                <div class="form-group">
+                    <label for="regAddressCity">Cidade</label>
+                    <input type="text" id="regAddressCity" placeholder="Aguardando CEP..." readonly>
+                </div>
+                <div class="form-group">
+                    <label for="regAddressState">Estado</label>
+                    <input type="text" id="regAddressState" placeholder="Aguardando CEP..." readonly>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="button button-primary">Cadastrar</button>
+                    <a href="login.html" class="form-link">Já tenho uma conta</a>
+                </div>
+                <div class="success-message" id="registerSuccessMessage"></div>
+                <div class="error-message" id="registerErrorMessage"></div>
+            </form>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>
