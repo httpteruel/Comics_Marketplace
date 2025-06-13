@@ -1,0 +1,28 @@
+Desenvolvimento do Comics_Marketplace até o momento:
+
+- Implementada a página principal (index.html) com:
+  - Header com navegação, logo e botão de carrinho.
+  - Seção hero com chamada para ação.
+  - Grid de quadrinhos em destaque com cards interativos.
+  - Modal de detalhes do quadrinho com sinopse e opção de adicionar ao carrinho.
+  - Modal do carrinho de compras com listagem de itens, total e opções de finalizar/limpar.
+  - Seção "Sobre" e footer.
+
+- Criada a página de login (login.html) com:
+  - Formulário de login com validação de e-mail e senha.
+  - Integração com localStorage para autenticação simulada.
+
+- Criada a página de cadastro (register.html) com:
+  - Formulário de cadastro com validação de nome, sobrenome, e-mail, senha, telefone e endereço.
+  - Consulta de CEP via API ViaCEP para autopreenchimento do endereço.
+  - Armazenamento de usuários no localStorage.
+
+- Desenvolvida a lógica JavaScript (main.js, auth.js):
+  - main.js: Gerenciamento do carrinho, modais de quadrinho/carrinho, busca com autocompletar e atualização dinâmica da UI.
+  - auth.js: Validações de formulários (login e cadastro), formatação de telefone/CEP e simulação de autenticação/cadastro.
+
+- Estilização completa (style.css):
+  - Design responsivo com variáveis CSS, grid de quadrinhos, modais, formulários e animações.
+  - Suporte a diferentes tamanhos de tela (mobile, tablet, desktop).
+
+Commit: Implementação inicial do frontend do Comics_Marketplace com funcionalidades de navegação, autenticação, carrinho e busca.
