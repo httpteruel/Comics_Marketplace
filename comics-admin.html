@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciar Quadrinhos - Quadrinhos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="sticky-top">
+        <div class="container flex items-center justify-between" role="banner">
+            <a href="index.html" class="logo" aria-label="Quadrinhos logo">Quadrinhos</a>
+            <nav aria-label="Main navigation" class="flex items-center gap-4">
+                <a href="index.html#home" tabindex="0">Home</a>
+                <a href="index.html#comics" tabindex="0">Quadrinhos</a>
+                <a href="index.html#about" tabindex="0">Sobre</a>
+                <a href="comics-admin.html" tabindex="0" id="adminLink">Gerenciar Quadrinhos</a>
+                <button id="cartBtn" class="button" aria-label="Ver carrinho de compras" title="Carrinho de compras">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="cart-icon">
+                        <path
+                            d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4H6zm0 2h12l1 2H5l1-2zm13 16H5V8h14v12zM9 10a1 1 0 0 1-1 1H7a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm4 0a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1zm4 0a1 1 0 0 1-1 1h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 1 1z" />
+                    </svg>
+                    <span id="cartItemCount">0</span>
+                </button>
+                <a href="login.html" id="loginBtn" class="button button-secondary"
+                    aria-label="Acessar página de login">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="container" id="comics-admin" aria-labelledby="admin-title">
+            <h2 id="admin-title" class="text-center"
+                style="font-weight:700; font-size:2rem; color: var(--color-primary);">Gerenciar Quadrinhos</h2>
+            <div class="form-container" style="margin-top: var(--spacing-xl);">
+                <h3 id="form-title">Adicionar Quadrinho</h3>
+                <form id="comicForm">
+                    <div class="form-group">
+                        <label for="comicTitle">Título</label>
+                        <input type="text" id="comicTitle" placeholder="Título do quadrinho" required>
+                        <span class="error-message" id="comicTitleError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicNumber">Número</label>
+                        <input type="number" id="comicNumber" placeholder="Número da edição" min="1" required>
+                        <span class="error-message" id="comicNumberError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicEdition">Edição</label>
+                        <input type="text" id="comicEdition" placeholder="Ex: Primeira Edição" required>
+                        <span class="error-message" id="comicEditionError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicPublicationDate">Data de Publicação</label>
+                        <input type="date" id="comicPublicationDate" required>
+                        <span class="error-message" id="comicPublicationDateError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicPublisher">Editora</label>
+                        <input type="text" id="comicPublisher" placeholder="Nome da editora" required>
+                        <span class="error-message" id="comicPublisherError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicAuthor">Autor</label>
+                        <input type="text" id="comicAuthor" placeholder="Nome do autor" required>
+                        <span class="error-message" id="comicAuthorError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="comicDescription">Descrição (máx. 300 caracteres)</label>
+                        <textarea id="comicDescription" maxlength="300" placeholder="Descrição do quadrinho"
+                            required></textarea>
+                        <span class="error-message" id="comicDescriptionError"></span>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="button button-primary" id="submitComicBtn">Salvar</button>
+                        <button type="button" class="button button-secondary" id="cancelEditBtn"
+                            style="display:none;">Cancelar</button>
+                    </div>
+                    <div class="success-message" id="comicSuccessMessage"></div>
+                    <div class="error-message" id="comicErrorMessage"></div>
+                </form>
+            </div>
+            <div class="table-container" style="margin-top: var(--spacing-xl);">
+                <h3>Listagem de Quadrinhos</h3>
+                <table id="comicsTable" style="width:100%; border-collapse:collapse;">
+                    <thead>
+                        <tr style="background-color: var(--color-bg);">
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">ID</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Título</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Número</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Edição</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Data de
+                                Publicação</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Editora</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Autor</th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Descrição
+                            </th>
+                            <th style="padding: var(--spacing-sm); border: 1px solid var(--color-border);">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="comicsTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Quadrinhos. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="main.js"></script>
+    <script src="auth.js"></script>
+    <script src="comics-admin.js"></script>
+</body>
+
+</html>

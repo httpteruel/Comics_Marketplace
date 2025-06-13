@@ -1,5 +1,3 @@
-// main.js - (Seu script existente, agora com funcionalidade de busca)
-
 // Comic synopses and prices data
 const comicData = {
     batman: {
@@ -292,7 +290,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     function calculateCartTotal() {
         return cart.reduce((total, item) => {
             const priceString = item.price.replace('R$', '').replace(',', '.').trim();
@@ -333,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Quantidade: ${item.quantity}</p>
                 </div>
                 <span class="cart-item-price">R$ ${itemSubtotal}</span>
-                <button class="remove-item-btn" aria-label="Remover ${item.title} do carrinho" data-key="${item.key}">&times;</button>
+                <button class="remove-item-btn" aria-label="Remover ${item.title} do carrinho" data-key="${item.key}">×</button>
             `;
             cartItemsContainer.appendChild(cartItemDiv);
         });
@@ -427,13 +424,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Atualiza o estado de login no cabeçalho na carga da página
     function updateLoginButton() {
         const loginBtn = document.getElementById('loginBtn');
+        const adminLink = document.getElementById('adminLink');
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         if (loginBtn) {
             if (isLoggedIn) {
                 // Se estiver logado, muda para um botão de "Sair" ou "Minha Conta"
                 loginBtn.textContent = 'Sair';
                 loginBtn.href = '#'; // Remove o link direto para login.html
-                loginBtn.onclick = function() {
+                loginBtn.onclick = function () {
                     localStorage.removeItem('isLoggedIn');
                     localStorage.removeItem('loggedInUserEmail'); // Remove o email do usuário logado
                     alert('Você foi desconectado.');
@@ -441,10 +439,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     updateCartUI(); // Atualiza o carrinho para refletir o logout
                     location.reload(); // Recarrega a página para atualizar o cabeçalho
                 };
+                if (adminLink) {
+                    adminLink.style.display = 'inline'; // Mostra o link de administração
+                }
             } else {
                 loginBtn.textContent = 'Login';
                 loginBtn.href = 'login.html';
                 loginBtn.onclick = null; // Remove o manipulador de clique se não estiver logado
+                if (adminLink) {
+                    adminLink.style.display = 'none'; // Esconde o link de administração
+                }
             }
         }
     }
@@ -493,67 +497,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!event.target.closest('.search-container')) {
             autocompleteList.style.display = 'none';
             // Se o campo de busca estiver vazio ou não houver resultados, limpa a mensagem
-            if (comicSearchInput.value === '' || autocompleteList.children.length === 0) {
-                searchMessage.textContent = '';
-            }
-        }
-    });
-
-    // Navegação com teclado na lista de autocompletar
-    comicSearchInput.addEventListener('keydown', (e) => {
-        const items = autocompleteList.querySelectorAll('li');
-        if (items.length === 0) return;
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            activeAutocompleteItem = (activeAutocompleteItem + 1) % items.length;
-            highlightAutocompleteItem(items);
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            activeAutocompleteItem = (activeAutocompleteItem - 1 + items.length) % items.length;
-            highlightAutocompleteItem(items);
-        } else if (e.key === 'Enter') {
-            e.preventDefault();
-            if (activeAutocompleteItem > -1) {
-                items[activeAutocompleteItem].click(); // Simula o clique no item ativo
-            } else {
-                // Se Enter for pressionado sem item ativo, tenta buscar o que está no input
-                const searchTerm = comicSearchInput.value.toLowerCase();
-                const foundKey = Object.keys(comicData).find(key =>
-                    comicData[key].title.toLowerCase() === searchTerm
-                );
-                if (foundKey) {
-                    openComicModal(comicData[foundKey].title, comicData[foundKey].synopsis, comicData[foundKey].price, foundKey);
-                    searchMessage.textContent = '';
-                    autocompleteList.style.display = 'none';
-                } else {
-                    searchMessage.textContent = 'Item não encontrado.';
-                    autocompleteList.style.display = 'none';
-                }
-            }
-        } else if (e.key === 'Escape') {
-            autocompleteList.style.display = 'none';
-            searchMessage.textContent = ''; // Limpa a mensagem de busca ao fechar
-            comicSearchInput.value = ''; // Limpa o input também
-        }
-    });
-
-    function highlightAutocompleteItem(items) {
-        items.forEach((item, index) => {
-            if (index === activeAutocompleteItem) {
-                item.classList.add('autocomplete-active');
-                item.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); // Scroll para o item visível
-            } else {
-                item.classList.remove('autocomplete-active');
-            }
-        });
-    }
-
-    // Inicializa a UI do carrinho e o botão de login quando a página carrega
-    updateCartUI();
-    updateLoginButton();
-});
-
-function scrollToComics() {
-    document.getElementById('comics').scrollIntoView({ behavior: 'smooth' });
-}
+            if (comicSearchInput
